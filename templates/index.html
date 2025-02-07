@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ7f6x5s5o5tC2s2uI3y2+7ub1UdmffvfLbZ0Whwb4k0KokjoWf8jKwdV1y0" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6e7f80, #8fb9a8);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        .card-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+        }
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+        .textarea-style {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+        }
+        .textarea-style:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .sentiment-result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+        .neutral {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">Sentiment Analysis</h2>
+            
+            <form action="/prediction" method="POST">
+                <textarea id="comment" class="textarea-style" placeholder="Enter your comment here..." name="text"></textarea>
+                
+                <br>
+
+                <button class="btn-submit" type="submit">Submit Comment</button>
+            </form>
+
+            <!-- Area to display sentiment result -->
+            {% if prediction is defined %}
+                <div class="mt-4">
+                    {% if prediction == 1 %}
+                        <div class="alert alert-success" role="alert">Positive comment</div>
+                    {% else %}
+                        <div class="alert alert-danger" role="alert">Negative comment</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper (for interactive components like tooltips, modals) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybF2t0J3XPkWmLleq8CfiJ1f74oSOg9zF5J3bP1l2BlnolcF6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0HhG0lW3VXgG9ppp1fW2v8m6gkmVgV5JX19wHg4RqtbD7Zx1" crossorigin="anonymous"></script>
+
+</body>
+</html>
